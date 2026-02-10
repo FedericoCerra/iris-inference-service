@@ -21,3 +21,4 @@ class IrisInput(BaseModel):
 class IrisPrediction(BaseModel):
     species: str
     class_id: int
+    probability: float

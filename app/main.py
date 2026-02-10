@@ -22,5 +22,5 @@ def predict(input_data: IrisInput):
         input_data.petal_length,
         input_data.petal_width
     ]
-    class_id, species = ai_model.predict(input_list)
-    return {"class_id": class_id, "species": species}
+    class_id, species, probability = ai_model.predict(input_list)
+    return {"class_id": class_id, "species": species, "probability": probability}

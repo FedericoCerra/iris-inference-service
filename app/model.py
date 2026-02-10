@@ -21,7 +21,8 @@ class IrisModel:
         
         prediction = self.model.predict([input_data])
         predicted_class_id = int(prediction[0])
-        return predicted_class_id, SPECIES_MAP[predicted_class_id]
+        probability = max(self.model.predict_proba([input_data])[0])
+        return predicted_class_id, SPECIES_MAP[predicted_class_id], probability
     
     
 
