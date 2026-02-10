@@ -1,6 +1,6 @@
 # 🌸 Iris Inference Service
 
-![Docker Image Size (latest)](https://img.shields.io/docker/image-size/fededee/iris-inference/latest)
+[![Docker Image Size (latest)](https://img.shields.io/docker/image-size/fededee/iris-inference/latest)](https://hub.docker.com/r/fededee/iris-inference)
 ![Python Version](https://img.shields.io/badge/python-3.11-blue)
 
 A production-ready Machine Learning API that predicts Iris flower species. Built with **FastAPI**, **Scikit-Learn**, and **Docker**.
@@ -45,6 +45,26 @@ Algorithm: Random Forest Classifier
 
 Accuracy: ~98% on test set
 
-Input: Sepal Length, Sepal Width, Petal Length, Petal Width.
 
-Output: Predicted Class (Setosa, Versicolor, Virginica) + Probability.
+## Expected input/output
+Example Request:
+
+```
+JSON
+{
+  "sepal_length": 5.1,
+  "sepal_width": 3.5,
+  "petal_length": 1.4,
+  "petal_width": 0.2
+}
+```
+
+Example Response:
+```
+JSON
+{
+  "class": "setosa",
+  "class_id": 0,
+  "probability": 0.98
+}
+```
