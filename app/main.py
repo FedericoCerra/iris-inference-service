@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .schemas import IrisInput, IrisPrediction
 from .model import ai_model
+from fastapi.responses import RedirectResponse
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -12,7 +13,7 @@ app = FastAPI(title="Iris Recognition API", lifespan=lifespan)
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to the Iris Recognition API! Use /predict to get predictions."}
+    return RedirectResponse(url="/docs")
 
 @app.post("/predict", response_model=IrisPrediction)
 def predict(input_data: IrisInput):
