@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from app.schemas import IrisInput, IrisPrediction
-from app.model import ai_model
+from .schemas import IrisInput, IrisPrediction
+from .model import ai_model
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
