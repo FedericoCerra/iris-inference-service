@@ -1,6 +1,6 @@
 # 🌸 Iris Inference Service
 
-![Docker Image Size (latest)](https://img.shields.io/docker/image-size/fededee/iris-inference/v2)
+![Docker Image Size (latest)](https://img.shields.io/docker/image-size/fededee/iris-inference/latest)
 ![Python Version](https://img.shields.io/badge/python-3.11-blue)
 
 A production-ready Machine Learning API that predicts Iris flower species. Built with **FastAPI**, **Scikit-Learn**, and **Docker**.
