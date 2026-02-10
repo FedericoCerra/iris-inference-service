@@ -45,6 +45,26 @@ Algorithm: Random Forest Classifier
 
 Accuracy: ~98% on test set
 
-Input: Sepal Length, Sepal Width, Petal Length, Petal Width.
 
-Output: Predicted Class (Setosa, Versicolor, Virginica) + Probability.
+## Expected input/output
+Example Request:
+
+```
+JSON
+{
+  "sepal_length": 5.1,
+  "sepal_width": 3.5,
+  "petal_length": 1.4,
+  "petal_width": 0.2
+}
+```
+
+Example Response:
+```
+JSON
+{
+  "class": "setosa",
+  "class_id": 0,
+  "probability": 0.98
+}
+```
