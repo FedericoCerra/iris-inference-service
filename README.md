@@ -42,16 +42,16 @@ A Full Stack Machine Learning Application that predicts Iris flower species. It 
 All good — here’s that section converted into clean, copy-pasteable GitHub Markdown.
 You can drop this straight into your README.md.
 
-## 🚀 Usage (No Installation Required)
+## Usage (No Installation Required)
 
 You can try the full application directly in your browser — no setup needed.
 
-### 🌸 Frontend App
+### Frontend App
 https://iris-inference-service.streamlit.app
 
 Interactive dashboard to visualize the Iris dataset and make real-time predictions.
 
-### ⚡ Backend API
+### Backend API
 https://iris-inference-service.onrender.com/docs
 
 Live Swagger UI to explore and test the API endpoints.
@@ -61,7 +61,7 @@ Live Swagger UI to explore and test the API endpoints.
 
 ---
 
-## 🛠️ Local Installation (For Developers)
+## Local Installation (For Developers)
 
 If you want to run the project locally or contribute, follow one of the options below.
 
