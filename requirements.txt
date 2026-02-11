@@ -1,5 +1,17 @@
+# --- Backend (FastAPI) ---
 fastapi
 uvicorn
+python-multipart
 pydantic
+
+# --- AI & Math ---
 scikit-learn
+pandas
+numpy
 joblib
+
+# --- Frontend (Streamlit) ---
+streamlit
+plotly
+matplotlib
+requests
