@@ -1,17 +1,18 @@
-# --- Backend (FastAPI) ---
-fastapi
-uvicorn
-python-multipart
-pydantic
-
-# --- AI & Math ---
-scikit-learn
+# --- Core ---
+streamlit>=1.40.0
 pandas
 numpy
-joblib
+requests
 
-# --- Frontend (Streamlit) ---
-streamlit
+# --- Visualization ---
 plotly
 matplotlib
-requests
+altair
+
+# --- ML & Backend ---
+scikit-learn
+joblib
+fastapi
+uvicorn
+pydantic
+python-multipart
