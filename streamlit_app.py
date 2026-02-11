@@ -70,15 +70,112 @@ with tab1:
             st.progress(res['probability'])
 
         # Radar Chart
-        categories = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
-        fig = go.Figure()
-        fig.add_trace(go.Scatterpolar(r=[sl, sw, pl, pw], theta=categories, fill='toself', name='Input', line_color='red'))
+        st.divider()
+        st.subheader(f"How does this {name} compare to average?")
         
-        if name in df_means.index:
-            fig.add_trace(go.Scatterpolar(r=df_means.loc[name, categories], theta=categories, fill='toself', name=f'Avg {name}'))
+        # Create two columns: Left for Chart (bigger), Right for Stats (smaller)
+        col_radar, col_stats = st.columns([2, 1])
+        
+        with col_radar:
+            # --- Chart Configuration ---
+            categories = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+            
+            # HELPER: Adds the first point to the end to close the shape
+            def close_loop(values):
+                return values + [values[0]]
+            
+            # We must also close the categories list so the axes match
+            closed_categories = close_loop(categories)
+            
+            # Map species to styles
+            SPECIES_STYLE = {
+                'setosa':     {'line': '#FF8C00', 'fill': 'rgba(255, 140, 0, 0.2)'},   # Orange
+                'versicolor': {'line': '#9932CC', 'fill': 'rgba(153, 50, 204, 0.2)'}, # Purple
+                'virginica':  {'line': '#228B22', 'fill': 'rgba(34, 139, 34, 0.2)'}   # Green
+            }
 
-        fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 12])), height=350)
-        st.plotly_chart(fig, width='stretch')
+            fig = go.Figure()
+
+            # --- Plot Species Averages ---
+            for species_name in df_means.index:
+                style = SPECIES_STYLE.get(species_name, {'line': 'gray', 'fill': 'rgba(128,128,128,0.1)'})
+                
+                # Get values and close the loop
+                vals = df_means.loc[species_name, categories].tolist()
+                vals = close_loop(vals)
+                
+                # Highlight the winner
+                if species_name == name:
+                    width = 3
+                    legend_name = f"Avg {species_name.title()} (Match)"
+                else:
+                    width = 1
+                    legend_name = f"Avg {species_name.title()}"
+
+                fig.add_trace(go.Scatterpolar(
+                    r=vals,
+                    theta=closed_categories,
+                    fill='toself',
+                    name=legend_name,
+                    line_color=style['line'],
+                    fillcolor=style['fill'],
+                    line_width=width,
+                    hoveron='points+fills' 
+                ))
+
+            # --- Plot User Input ---
+            user_vals = close_loop([sl, sw, pl, pw])
+            
+            fig.add_trace(go.Scatterpolar(
+                r=user_vals,
+                theta=closed_categories,
+                fill='toself',
+                name='Your Input',
+                line_color='#00BFFF',
+                fillcolor='rgba(0, 191, 255, 0.3)',
+                line_width=3
+            ))
+
+            # --- Layout Settings ---
+            fig.update_layout(
+                polar=dict(
+                    radialaxis=dict(visible=True, range=[0, 8]),
+                    bgcolor='rgba(0,0,0,0)'
+                ),
+                margin=dict(l=40, r=40, t=30, b=30),
+                height=350,
+                showlegend=True,
+                legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=-0.25,
+                    xanchor="center",
+                    x=0.5
+                )
+            )
+            st.plotly_chart(fig, use_container_width=True)
+
+        with col_stats:
+            # 2. Display the Metrics (Input vs Average)
+            st.write(f"**Typical {name.title()} Specs:**")
+            
+            # We map the variable names to the string names for the loop
+            inputs = {'sepal_length': sl, 'sepal_width': sw, 'petal_length': pl, 'petal_width': pw}
+            
+            if name in df_means.index:
+                for feature in categories:
+                    user_val = inputs[feature]
+                    avg_val = df_means.loc[name, feature]
+                    diff = user_val - avg_val
+                    
+                    # Clean up the label (e.g., "sepal_length" -> "Sepal Length")
+                    label = feature.replace('_', ' ').title()
+                    
+                    st.metric(
+                        label=label,
+                        value=f"{user_val} cm",
+                        delta=f"{diff:.2f} cm", # Automatically turns Green (+) or Red (-)
+                    )
 
 # TAB 2: VISUALIZATION
 
