@@ -150,3 +150,31 @@ JSON
   "probability": 0.98
 }
 ```
+## 📂 Project Structure
+
+```text
+iris-inference-service/
+├── app/                     # Backend application package
+│   ├── __pycache__/          # Python bytecode cache
+│   ├── main.py               # FastAPI app entry point (API routes & startup)
+│   ├── model.py              # Model loading and prediction logic
+│   └── schemas.py            # Pydantic request/response schemas
+│
+├── models/                   # Trained ML models (.pkl)
+│
+├── .github/
+│   └── workflows/
+│       └── publish.yaml      # GitHub Actions workflow (CI/CD, Docker publish)
+│
+├── __pycache__/              # Root-level Python cache
+├── .venv/                    # Local virtual environment (not committed)
+│
+├── exploration.ipynb         # Data exploration & experimentation notebook
+├── train.py                  # Model training script
+│
+├── streamlit_app.py          # Streamlit frontend application
+├── requirements.txt          # Python dependencies (backend + frontend)
+├── Dockerfile                # Docker configuration for FastAPI backend
+├── README.md                 # Project documentation
+├── .gitignore                # Git ignore rules
+```
