@@ -76,7 +76,7 @@ docker run -d -p 8000:80 fededee/iris-inference:latest
 The API will be available at:
 http://localhost:8000/docs
 
-Option 2: Run Full Stack from Source
+### Option 2: Run Full Stack from Source
 
 Clone the repository to run both the API and the frontend locally.
 
