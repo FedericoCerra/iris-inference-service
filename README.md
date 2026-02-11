@@ -39,9 +39,6 @@ A Full Stack Machine Learning Application that predicts Iris flower species. It 
 - **Containerized**  
   Docker image published and ready to run.
 
-All good — here’s that section converted into clean, copy-pasteable GitHub Markdown.
-You can drop this straight into your README.md.
-
 ## Usage (No Installation Required)
 
 You can try the full application directly in your browser — no setup needed.
@@ -63,7 +60,7 @@ Live Swagger UI to explore and test the API endpoints.
 
 ## Local Installation (For Developers)
 
-If you want to run the project locally or contribute, follow one of the options below.
+If you want to run the project locally or make modifications, follow one of the options below.
 
 ---
 
