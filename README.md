@@ -147,6 +147,19 @@ JSON
   "probability": 0.98
 }
 ```
+
+## DevOps & Automation (CI/CD)
+
+* **Frontend Automation:** Connected directly to the GitHub repository.
+    * *Trigger:* Push to `main` branch.
+    * *Action:* Streamlit Cloud automatically pulls the latest code and re-deploys the dashboard instantly.
+
+* **Backend Automation:** Managed via **GitHub Actions**.
+    * *Trigger:* Push to `main` branch (specifically `app/` changes).
+    * *Action:* A workflow (`publish.yaml`) builds the new Docker image and pushes it to **Docker Hub** with the `latest` tag.
+    * *Deployment:* Render pulls the updated image to refresh the live API.
+
+
 ## 📂 Project Structure
 
 ```text
